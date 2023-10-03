@@ -5,7 +5,7 @@ import random
 word_list= ["apple", "banana", "cherry", "potato", "tomato", "grape"]
 
 #Hangman deads variant
-hangman_art = [
+hangman_deads = [
     """
     +---+
     |   |
@@ -82,9 +82,6 @@ def display_word(word,guess,hang,un):
     print(true_anwser)
     print(hang[un])
             
-
-
-
 #Play game
 def play(word,hangman):
     guessed_letter=[]
@@ -106,10 +103,8 @@ def play(word,hangman):
         guessed_letter.append(letter)
         win=display_word(word,guessed_letter,hangman,uncorrect_anwsers)
 
-
-
 def main():
     words=random_word(word_list)
-    play(words,hangman_art)
+    play(words,hangman_deads)
     
 main()
