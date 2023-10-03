@@ -69,10 +69,10 @@ def random_word(words):
     return random.choice(words)
 
 #Display a finded letter
-def display_word(w,guess,hang,un):
+def display_word(word,guess,hang,un):
 
     true_anwser=""
-    for i in w:
+    for i in word:
         if i in guess:
             true_anwser+=i
         else:
@@ -87,15 +87,15 @@ def display_word(w,guess,hang,un):
 
 #Play game
 def play(word,hangman):
-    guessed_word=[]
+    guessed_letter=[]
     uncorrect_anwsers=0
-    win=display_word(word,guessed_word,hangman,uncorrect_anwsers)
+    win=display_word(word,guessed_letter,hangman,uncorrect_anwsers)
     while True:
         if win==True:
             print("You win! correct anwser is %a" %(word))
             break
         letter=input("Enter a letter: ")
-        if letter in guessed_word:
+        if letter in guessed_letter:
             print("Letter is Guessed")
         elif not letter in word: 
             uncorrect_anwsers+=1
@@ -103,8 +103,8 @@ def play(word,hangman):
                 print(hangman[uncorrect_anwsers])
                 print("Game over! Correct anwser is %a" %(word))
                 break
-        guessed_word.append(letter)
-        win=display_word(word,guessed_word,hangman,uncorrect_anwsers)
+        guessed_letter.append(letter)
+        win=display_word(word,guessed_letter,hangman,uncorrect_anwsers)
 
 
 
