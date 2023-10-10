@@ -11,34 +11,31 @@ except ImportError:
     import requests
 
 # Enter the city name for which you want the weather forecast
-city = 'armenia'
+city = input("Input which city weather forecast you want to know.")
+
 
 # Create the url
 url = f'https://goweather.herokuapp.com/weather/{city}'
 
 # Send the request
 response = requests.get(url)
+print(response.json)
 # Check response and print whether
-if response.status_code == 200:
+if response.status_code == 200 and response.json()["temperature"]:
     data=response.json() 
-    # 
+    # Detailed Wheather 
     temperature=data["temperature"]
     wind_speed=data["wind"]
     description=data["description"]
 
     print(f"The wheather in {city.title()} {temperature} the wind speed is {wind_speed}: {description}")
-    # Wheather about next days
-    while True:
-        day=input("Want to know the weather tomorrow (1) the day after tomorrow (2) three days period (3).(Write Number) or No!  ")
-        
-        if day.lower()=="no":
-        
+    # Wheather
+    while True: 
+        wheather=input("Do you want to receive defined information?(temperature,description,wind) or No. ")
+        if wheather.lower()=="no":
             break
-        wheather=data['forecast'][int(day)-1]
-        ttemperature=wheather["temperature"]
-        twind_speed=wheather["wind"]
-        
-        print(f"The wheather in {city.title()}  {ttemperature} the wind speed is {twind_speed}:")
-        print("_________________________")
+        print(f"The {wheather.title()} is {data[wheather.lower()]}")
+
+   
 else:
     print("Error with response! Try again")
