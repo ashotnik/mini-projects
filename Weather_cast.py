@@ -1,5 +1,4 @@
 #!/usr/bin/python3
-import json
 import subprocess
 
 # Chechk if we have requests module.if have not download
