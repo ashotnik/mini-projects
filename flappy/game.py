@@ -161,7 +161,7 @@ while run:
     pygame.display.update()
 
     clock.tick(60)
-    # X
+    # Close page
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             run = False
