@@ -1,10 +1,10 @@
 #!/usr/bin/python3
 import random
 
-#List where choose a word
-word_list= ["apple", "banana", "cherry", "potato", "tomato", "grape"]
+# List where a word is chosen
+word_list = ["apple", "banana", "cherry", "potato", "tomato", "grape"]
 
-#Hangman deads variant
+# Hangman death variants
 hangman_deads = [
     """
     +---+
@@ -64,47 +64,48 @@ hangman_deads = [
     =======""",
 ]
 
-#Get Random word from list
+
+# Get a random word from the list
 def random_word(words):
     return random.choice(words)
 
-#Display a finded letter
-def display_word(word,guess,hang,un):
-
-    true_anwser=""
-    for i in word:
-        if i in guess:
-            true_anwser+=i
+# Display a found letter
+def display_word(word, guess, hang, uncorrect):
+    true_answer = ""
+    for letter in word:
+        if letter in guess:
+            true_answer += letter
         else:
-            true_anwser+="-"
-    if not "-" in true_anwser:
+            true_answer += "-"
+    if "-" not in true_answer:
         return True
-    print(true_anwser)
-    print(hang[un])
-            
-#Play game
-def play(word,hangman):
-    guessed_letter=[]
-    uncorrect_anwsers=0
-    win=display_word(word,guessed_letter,hangman,uncorrect_anwsers)
+    print(true_answer)
+    print(hang[uncorrect])
+
+# Play the game
+def play(word, hangman):
+    guessed_letters = []
+    uncorrect_answers = 0
+    win = display_word(word, guessed_letters, hangman, uncorrect_answers)
     while True:
-        if win==True:
-            print("You win! correct anwser is %a" %(word))
+        if win:
+            print("You win! The correct answer is %s" % word)
             break
-        letter=input("Enter a letter: ")
-        if letter in guessed_letter:
-            print("Letter is Guessed")
-        elif not letter in word: 
-            uncorrect_anwsers+=1
-            if uncorrect_anwsers==6:
-                print(hangman[uncorrect_anwsers])
-                print("Game over! Correct anwser is %a" %(word))
+        letter = input("Enter a letter: ")
+        if letter in guessed_letters:
+            print("Letter is guessed")
+        elif letter not in word:
+            uncorrect_answers += 1
+            if uncorrect_answers == 6:
+                print(hangman[uncorrect_answers])
+                print("Game over! The correct answer is %s" % word)
                 break
-        guessed_letter.append(letter)
-        win=display_word(word,guessed_letter,hangman,uncorrect_anwsers)
+        guessed_letters.append(letter)
+        win = display_word(word, guessed_letters, hangman, uncorrect_answers)
 
 def main():
-    words=random_word(word_list)
-    play(words,hangman_deads)
-    
-main()
+    words = random_word(word_list)
+    play(words, hangman_deads)
+
+if __name__ == "__main__":
+    main()
