@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+"""Imports"""
 import random
 
 # List where a word is chosen
