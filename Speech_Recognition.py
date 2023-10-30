@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 
-# Imports
+"""Imports"""
+
 import subprocess
 import os
 try:
