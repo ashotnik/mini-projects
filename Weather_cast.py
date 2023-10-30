@@ -12,7 +12,6 @@ except ImportError:
 # Enter the city name for which you want the weather forecast
 city = input("Input which city weather forecast you want to know.")
 
-
 # Create the url
 url = f'https://goweather.herokuapp.com/weather/{city}'
 
