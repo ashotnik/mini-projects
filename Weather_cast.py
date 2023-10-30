@@ -17,7 +17,7 @@ url = f'https://goweather.herokuapp.com/weather/{city}'
 
 # Send the request
 response = requests.get(url)
-print(response.json)
+
 # Check response and print whether
 if response.status_code == 200 and response.json()["temperature"]:
     data=response.json() 

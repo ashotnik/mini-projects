@@ -27,27 +27,66 @@ pipe_up_y3=0
 pipe_down_y2=0
 pipe_down_y3=0  
 pipe_down_y=random.choice(range(260, 370,10))
-
-
-# Import photos
-font=pygame.font.Font('images/Roboto-Black.ttf',26)
-bg=pygame.image.load('images/bg.png')
-bird_up=pygame.image.load('images/bird_up.png')
-bird_down=pygame.image.load('images/bird_down.png')
-bird=pygame.image.load('images/bird.png')
-pipe_up=pygame.image.load('images/pipe_up.png')
-pipe_down=pygame.image.load('images/pipe_down.png')
-replay=pygame.image.load('images/replay.png')
-replay=pygame.transform.scale(replay,(64,64))
-pipe_up=pygame.transform.scale(pipe_up,(115,300))
-pipe_down=pygame.transform.scale(pipe_down,(115,300))
-bird_lose=pygame.transform.rotate(bird_down,-90)
 pipe_x2=0
 pipe_x3=0
 check=False
 check_1=False
 lose=True
 score=0
+
+# Import photos and Fonts
+try:
+    font=pygame.font.Font('font/Roboto-Black.ttf',26)
+except pygame.error as e:
+    print("Error loading font:", e)
+
+try:
+    font_big=pygame.font.Font('font/Roboto-Black.ttf',80)
+except pygame.error as e:
+    print("Error loading font:", e)
+
+try:
+    bg=pygame.image.load('images/bg.png')
+except pygame.error as e:
+    print("Error loading image:", e)
+
+try:
+    bird_up=pygame.image.load('images/bird_up.png')
+except pygame.error as e:
+    print("Error loading font:", e)
+
+try:
+    bird_down=pygame.image.load('images/bird_down.png')
+except pygame.error as e:
+    print("Error loading font:", e)
+
+try:
+    bird=pygame.image.load('images/bird.png')
+except pygame.error as e:
+    print("Error loading font:", e)
+    
+try:
+    pipe_up=pygame.image.load('images/pipe_up.png') 
+except pygame.error as e:
+    print("Error loading font:", e)
+
+try:
+    pipe_down=pygame.image.load('images/pipe_down.png')
+except pygame.error as e:
+    print("Error loading font:", e)
+
+try:
+    replay=pygame.image.load('images/replay.png')
+except pygame.error as e:
+    print("Error loading font:", e)
+
+
+
+replay=pygame.transform.scale(replay,(64,64))
+pipe_up=pygame.transform.scale(pipe_up,(115,300))
+pipe_down=pygame.transform.scale(pipe_down,(115,300))
+bird_lose=pygame.transform.rotate(bird_down,-90)
+
 
 # Create a screen
 screen=pygame.display.set_mode((height_x , width_y))
@@ -126,7 +165,6 @@ while run:
         if bird_y<375:
             bird_y+=5
         screen.blit(bird_lose,(bird_x,bird_y))
-        font_big=pygame.font.Font('images/Roboto-Black.ttf',80)
         screen.blit(font_big.render("Lose!", True, "White"),(215,100))
         screen.blit(replay,(270,190))
         replay_rect=replay.get_rect(topleft=(270,190))
