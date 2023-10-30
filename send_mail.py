@@ -1,5 +1,12 @@
 #!/usr/bin/python3
-import smtplib
+"""Imports"""
+import subprocess
+try:
+    import smtplib
+except ImportError:
+    print("smtplib library not found. Installing...")
+    subprocess.check_call(["pip", "install", "smtplib"])
+    import smtplib   
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
@@ -29,8 +36,8 @@ def send_email(sender_email, receiver_email, password, subject, message):
         server.sendmail(sender_email, receiver_email, msg.as_string())  # Send the email
         print("Email sent successfully!")
 
-    except smtplib.SMTPException as e:
-        print(f"SMTP Exception: {str(e)}")
+    except smtplib.SMTPException as error:
+        print(f"SMTP Exception: {str(error)}")
     finally:
         server.quit()  # Quit the server
 
